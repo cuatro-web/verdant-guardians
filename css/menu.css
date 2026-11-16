@@ -1,0 +1,36 @@
+/* Main menu: layered fantasy scene with drifting clouds and fireflies. */
+#menu{align-items:center;overflow:hidden;background:linear-gradient(#0d1a14 0%,#1c3f33 45%,#3b6b3e 78%,#2a4d2c 100%)}
+.scene{position:absolute;inset:0;pointer-events:none}
+.sun{position:absolute;right:8%;top:10%;width:min(26vw,260px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(255,226,150,.55),rgba(255,226,150,0) 68%)}
+.cloud{position:absolute;height:34px;width:150px;border-radius:40px;background:rgba(235,245,235,.16);filter:blur(1.5px);
+  box-shadow:55px -16px 0 6px rgba(235,245,235,.13),100px 2px 0 0 rgba(235,245,235,.12);animation:drift linear infinite}
+.c1{top:14%;left:-220px;animation-duration:70s}.c2{top:26%;left:-220px;animation-duration:95s;animation-delay:-40s;transform:scale(.7)}
+.c3{top:8%;left:-220px;animation-duration:120s;animation-delay:-80s;transform:scale(1.2)}
+.hills{position:absolute;left:0;right:0;bottom:0;width:100%;height:46%}
+.crystal{position:absolute;right:14%;bottom:20%;height:min(40vh,320px);filter:drop-shadow(0 0 28px rgba(80,255,170,.55));animation:glow 4s ease-in-out infinite}
+.fly{position:absolute;width:5px;height:5px;border-radius:50%;background:#c8ffe4;box-shadow:0 0 8px 2px rgba(120,255,190,.7);opacity:0;animation:fly var(--d) ease-in-out infinite;animation-delay:var(--s)}
+.menu-content{position:relative;z-index:1;padding:0 8vw;display:flex;flex-direction:column;align-items:flex-start;gap:.5rem}
+.logo{margin:0;display:flex;flex-direction:column;line-height:.95;font-weight:700;color:var(--gold);font-size:clamp(2.6rem,9vw,5.6rem);letter-spacing:.04em;
+  text-shadow:0 4px 0 #3a2d10,0 0 34px rgba(62,207,142,.3)}
+.logo span:first-child{font-size:.55em;letter-spacing:.35em;color:#e6d9a8}
+.logo span:last-child{background:linear-gradient(100deg,#c9a75a 40%,#fff2c0 50%,#c9a75a 60%) 200% 0/250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 7s ease-in-out infinite;text-shadow:none;filter:drop-shadow(0 4px 0 #3a2d10)}
+.tagline{margin:.2rem 0 1.2rem;color:var(--muted);font-style:italic}
+.menu-buttons{display:flex;flex-direction:column;gap:.6rem;width:min(300px,80vw)}
+@media (max-width:760px){.menu-content{align-items:center;padding:0 1rem;text-align:center}.crystal{opacity:.35;right:50%;transform:translateX(50%)}.logo{align-items:center}}
+@keyframes drift{to{transform:translateX(calc(100vw + 500px))}}
+@keyframes glow{50%{filter:drop-shadow(0 0 44px rgba(80,255,170,.85))}}
+@keyframes fly{0%,100%{opacity:0;transform:translate(0,0)}30%,70%{opacity:.9}50%{transform:translate(var(--dx),-50px)}}
+@keyframes shine{0%,60%{background-position:200% 0}100%{background-position:-100% 0}}
+
+.menu-stats{margin:-.6rem 0 1rem;color:var(--gold);font-size:.9rem}.menu-stats:empty{display:none}
+
+/* Records card */
+.records{position:absolute;z-index:1;right:4vw;top:50%;transform:translateY(-50%);width:min(260px,24vw);padding:1rem 1.1rem;
+  background:var(--panel);border:1px solid rgba(201,167,90,.5);border-radius:var(--radius);box-shadow:0 10px 30px rgba(0,0,0,.45);backdrop-filter:blur(3px)}
+.records h2{margin:0 0 .7rem;color:var(--gold);font-size:1.15rem;letter-spacing:.05em}
+.records .rec-list{margin-top:.7rem;padding-top:.6rem;border-top:1px solid rgba(255,255,255,.1)}
+.records .note{margin:.6rem 0 0}.records .note[hidden]{display:none}
+.rec-list b{color:var(--gold);letter-spacing:.1em}
+@media (min-width:901px) and (min-height:521px){.crystal{right:31%}}
+@media (max-width:900px),(max-height:520px){.records{display:none}}
+@media (min-width:901px) and (min-height:521px){.menu-stats{display:none}}

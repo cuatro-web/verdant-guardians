@@ -1,0 +1,62 @@
+/* Base: tokens, buttons, dialogs and modals shared by every screen. */
+:root{--bg:#12170f;--panel:rgba(24,34,26,.9);--panel-solid:#1a251c;--emerald:#3ecf8e;--gold:#c9a75a;--text:#e8efe6;--muted:#9fb3a3;--radius:12px;
+  --serif:"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font-family:var(--serif);overflow:hidden}
+.screen{display:none;position:fixed;inset:0}
+.screen.active{display:flex}
+.btn{font:inherit;font-size:1.05rem;padding:.75rem 1rem;border-radius:var(--radius);cursor:pointer;color:var(--text);
+  background:var(--panel);border:1px solid rgba(201,167,90,.45);transition:border-color .15s,transform .1s}
+.btn:hover:not(:disabled){border-color:var(--emerald)}
+.btn:active:not(:disabled){transform:scale(.98)}
+.btn:focus-visible,.tower-btn:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--emerald);outline-offset:2px}
+.btn.primary{background:linear-gradient(#2c8a5c,#1f6a45);border-color:var(--emerald)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.small{padding:.4rem .85rem;font-size:.92rem}
+.overlay{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;background:rgba(6,10,7,.74);padding:1rem}
+.overlay[hidden]{display:none}
+.dialog{position:relative;min-width:min(340px,88vw);max-width:92vw;max-height:92vh;overflow:auto;padding:1.6rem 2rem;text-align:center;
+  background:linear-gradient(#1f2d22,#172019);border:1px solid var(--gold);border-radius:var(--radius);box-shadow:0 14px 44px rgba(0,0,0,.65);animation:pop .3s ease-out}
+.dialog.wide{width:min(520px,92vw)} .dialog.left{text-align:left}
+.dialog h2{margin:0 0 1rem;color:var(--gold);font-size:1.8rem;letter-spacing:.03em}
+.dialog.defeat h2{color:#ef8a80}
+.dialog > div > div{margin:.25rem 0}
+.dialog small{color:var(--muted)}
+.dialog .x{position:absolute;top:.4rem;right:.6rem;font-size:1.6rem;line-height:1;background:none;border:0;color:var(--muted);cursor:pointer}
+.ov-btns{display:flex;flex-direction:column;gap:.5rem;margin-top:1.2rem}
+.ov-btns.row{flex-direction:row;justify-content:space-between}
+.stars{font-size:2.6rem;color:#4a5a4d;letter-spacing:.2em;margin-bottom:.4rem}
+.stars span{display:inline-block;opacity:0;transform:scale(.3) rotate(-30deg);animation:starIn .5s ease-out forwards}
+.stars span.lit{color:var(--gold);text-shadow:0 0 14px rgba(201,167,90,.6)}
+.tut-text{min-height:7.5em;line-height:1.55;margin:.2rem 0 .8rem}
+.dots{display:flex;gap:.4rem;justify-content:center}
+.dots i{width:8px;height:8px;border-radius:50%;background:#35453a}.dots i.on{background:var(--emerald)}
+.levels-grid{display:grid;gap:.7rem}
+.level-card{display:flex;flex-direction:column;gap:.3rem;align-items:flex-start;padding:.8rem 1rem;border:1px solid rgba(201,167,90,.35);border-radius:var(--radius);background:rgba(255,255,255,.04);text-align:left}
+.level-card span{color:var(--muted);font-size:.9rem}.level-card.locked{opacity:.55}
+.row-set{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.55rem 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.row-set select{font:inherit;background:var(--panel-solid);color:var(--text);border:1px solid rgba(201,167,90,.45);border-radius:8px;padding:.25rem .4rem}
+.row-set input[type=checkbox]{width:1.2rem;height:1.2rem;accent-color:var(--emerald)}
+.row-set input[type=range]{accent-color:var(--emerald);vertical-align:middle}
+.note{color:var(--muted);font-size:.85rem;margin:.9rem 0 0}
+@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.96)}}
+@keyframes starIn{to{opacity:1;transform:none}}
+body[data-motion="off"] *{animation:none!important;transition:none!important}
+body[data-motion="off"] .stars span{opacity:1;transform:none}
+[hidden]{display:none!important}
+
+/* Phase 5: danger button, touch behaviour */
+.btn.danger{border-color:#c0554d;background:#4a1f1c}
+html,body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+button{touch-action:manipulation}
+@media (pointer:coarse){.btn{min-height:44px}.btn.small{min-height:40px}.row-set input[type=checkbox]{width:1.5rem;height:1.5rem}}
+
+/* Shared stat rows (menu records, wave info, tower info) */
+.kv{display:flex;flex-direction:column;gap:.3rem;font-size:.92rem}
+.kv-row{display:flex;justify-content:space-between;align-items:baseline;gap:.8rem}
+.kv-row span{color:var(--muted)}.kv-row b{font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+.kv .up{color:var(--emerald);font-weight:600}
+.note.small{font-size:.78rem;margin:.5rem 0 0}
+.set-h{margin:1rem 0 .1rem;color:var(--gold);font-size:.85rem;letter-spacing:.12em;text-transform:uppercase}
+.set-h:first-of-type{margin-top:.2rem}
+.note.small:empty{display:none}
